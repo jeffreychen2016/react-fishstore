@@ -4,7 +4,7 @@ import './New.css';
 class New extends React.Component {
   render () {
     return (
-      <div className="new">New</div>
+      <div className="New">New</div>
     );
   };
 };
