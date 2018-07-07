@@ -12,6 +12,7 @@ import Navbar from '../components/Navbar/Navbar';
 // import OrderSpa from '../components/OrderSpa/OrderSpa';
 import Register from '../components/Register/Register';
 // import SingleOrder from '../components/SingleOrder/SingleOrder';
+import firebase from 'firebase';
 import fbConnection from '../firebaseRequests/connection';
 fbConnection();
 
@@ -57,7 +58,22 @@ class App extends Component {
     authed: false,
   }
 
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({authed: true});
+      } else {
+        this.setState({authed: false});
+      };
+    });
+  };
+
+  componentWillUnmount () {
+    this.removeListener();
+  }
+
   render () {
+
     return (
       // everything outside of <switch> will stay the same
       // everyting inside of <switch> will be routed
@@ -66,7 +82,9 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar
+              authed={this.state.authed}
+            />
             <div className="container">
               <div className="row">
                 <Switch>
