@@ -4,7 +4,7 @@ import './SingleOrder.css';
 class SingleOrder extends React.Component {
   render () {
     return (
-      <div className="singleorder">SingleOrder</div>
+      <div className="SingleOrder">SingleOrder</div>
     );
   };
 };

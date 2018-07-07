@@ -4,7 +4,7 @@ import './Fish.css';
 class Fish extends React.Component {
   render () {
     return (
-      <div className="fish">Fish</div>
+      <div className="Fish">Fish</div>
     );
   };
 };
