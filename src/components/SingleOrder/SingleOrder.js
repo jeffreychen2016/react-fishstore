@@ -60,7 +60,7 @@ class SingleOrder extends React.Component {
     orderRequests
       .putRequest(firebaseId,this.state.order)
       .then(() => {
-        this.props.history.push('./orders');
+        this.props.history.push('/orders');
       })
       .catch((err) => {
         console.error('error with put request', err);
