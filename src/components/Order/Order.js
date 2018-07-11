@@ -4,8 +4,11 @@ import formatPrice from '../../helpers';
 
 class Order extends React.Component {
   renderOrder = (key) => {
-    const fish = this.props.fishes.find( x => x.id === key);
+    const fish = this.props.fishes.find (x => x.id === key);
     const count = this.props.order[key];
+    const xClickFunction = () => {
+      this.props.removeFromOrder(key);
+    };
     return (
       <li
         key={key}
@@ -15,7 +18,7 @@ class Order extends React.Component {
         <div className="col-xs-5">{fish.name}</div>
         <div className="col-xs-3">{formatPrice(fish.price)}</div>
         <div className="col-xs-2">
-          <button className="btn btn-default">&times;</button>
+          <button className="btn btn-default" onClick={xClickFunction}>&times;</button>
         </div>
       </li>
     );
@@ -25,7 +28,7 @@ class Order extends React.Component {
     // take out all of keys and put them into an array so that we can loop them
     const orderIds = Object.keys(this.props.order);
     const total = orderIds.reduce((prevTotal, key) => {
-      const fish = this.props.fishes.find( x => x.id === key);
+      const fish = this.props.fishes.find (x => x.id === key);
       const count = this.props.order[key];
       const isAvailable = fish && fish.status === 'available';
       if (isAvailable) {
