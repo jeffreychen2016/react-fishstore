@@ -1,10 +1,28 @@
 import React from 'react';
 import './SingleOrder.css';
+import orderRequests from '../../firebaseRequests/orders';
 
 class SingleOrder extends React.Component {
+  deleteOrderClick = () => {
+    // params is everything in the URL /order/:id
+    // anything is in :id
+    const firebaseId = this.props.match.params.id;
+    orderRequests
+      .deleteRequest(firebaseId)
+      .then(() => {
+        this.props.history.push('/orders');
+      })
+      .catch((err) => {
+        console.error('error with delete request',err);
+      });
+  };
+
   render () {
     return (
-      <div className="SingleOrder">SingleOrder</div>
+      <div className="SingleOrder">
+        <h1>SingleOrder</h1>
+        <button className="btn btn-danger" onClick={this.deleteOrderClick}>Delete Order</button>
+      </div>
     );
   };
 };
