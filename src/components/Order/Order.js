@@ -51,7 +51,7 @@ class Order extends React.Component {
         {
           orderExists ? (
             <button className="btn btn-default" onClick={this.saveOrder}>Save Order</button>
-          ): (
+          ) : (
             <div>Add inventory to your order</div>
           )
         }
